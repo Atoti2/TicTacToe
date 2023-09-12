@@ -1,0 +1,32 @@
+.squares{
+    display: grid;
+    width: 300px;
+    gap: 3px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    margin: 0 auto;
+}
+.square{
+    height: 100px;
+    width: 100px;
+    background-color: #294ea1;
+    position: relative;
+}
+
+.X::after{
+    content: 'X';
+}
+
+.O::after{
+    content: 'O';
+}
+
+.X::after, .O::after{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2rem;
+    font-family: fantasy;
+    color: #fefefa;
+}
