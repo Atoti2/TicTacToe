@@ -1,12 +1,20 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
 .squares{
     display: grid;
     width: 300px;
     gap: 3px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    margin: 0 auto;
+ 
 }
 .square{
+    cursor: pointer;
     height: 100px;
     width: 100px;
     background-color: #294ea1;
@@ -16,6 +24,10 @@
 .nextPlayer, .winner{
     text-align: center;
     font-size: 1.3rem;
+}
+
+.over::after{
+    content: '';
 }
 
 .X::after{

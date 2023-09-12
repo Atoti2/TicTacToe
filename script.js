@@ -5,22 +5,42 @@ const Player = (name, marker) => {
 const gameBoard = (() => {
     const squares = document.querySelector('.squares')
     const board = ["", "", "", "", "", "", "", "", ""]
-
+    let count = 0
     board.forEach((item, index) => {
         const square = document.createElement('div')
         square.className = 'square'
         squares.appendChild(square)
     })
-    
 
+    const button = document.querySelector('.new')
 
-    Array.from(squares.children).forEach((square, index) => {
+    function restart(){
+        console.log(squares);
+        // game.win = false
+        // game.activePlayer = 'Player 1'
+        // game.remainingSpots = 9
+        // gameBoard.board = ["", "", "", "", "", "", "", "", ""]
+        // squares.forEach((square) => {
+        //     square.classList.remove('X')
+        //     square.classList.remove('O')
+        // })
+    }
+    button.addEventListener('click', restart)
+
+        Array.from(squares.children).forEach((square, index) => {
                 square.addEventListener('click', () => {
-                    board[index] = game.activePlayer.marker
+                        board[index] = game.activePlayer.marker
                         square.style.pointerEvents = 'none'
                         game.remainingSpots -= 1
                         game.checkWinner()
                         square.classList.add(game.activePlayer.marker)
+                        if(game.win){
+                            count++
+                            if(count >= 2){
+                                square.classList.remove(game.activePlayer.marker)
+                                square.classList.add('over')
+                            }
+                        }
                         if(!game.win){
                             if(game.remainingSpots > 0){
                                 game.nextPlayer()
@@ -30,7 +50,7 @@ const gameBoard = (() => {
                             }
                         }
             })
-    }) 
+}) 
     return {board}
 })();
 
@@ -56,7 +76,8 @@ const game = (() => {
         [2,4,6],
     ];
 
-  
+ 
+
 
     function checkWinner(){
         winnnerAxes.forEach((item, index) => {
@@ -72,7 +93,6 @@ const game = (() => {
         winner.textContent = "Tie"
     }
 
-
     function alertNextPlayer(){
         this.activePlayer == playerOne ? next.textContent = "Player 2" : next.textContent = "Player 1"
     }
@@ -81,15 +101,14 @@ const game = (() => {
         this.activePlayer == playerOne ? this.activePlayer = playerTwo : this.activePlayer = playerOne
     }
 
-
-
     return {
         activePlayer,
         remainingSpots,
         nextPlayer,
         alertNextPlayer,
         checkWinner,
-        checkTie
+        checkTie,
+
     }
 })()
 
