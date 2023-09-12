@@ -13,6 +13,11 @@
     position: relative;
 }
 
+.nextPlayer, .winner{
+    text-align: center;
+    font-size: 1.3rem;
+}
+
 .X::after{
     content: 'X';
 }
