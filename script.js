@@ -25,6 +25,8 @@ const gameBoard = (() => {
                             if(game.remainingSpots > 0){
                                 game.nextPlayer()
                                 game.alertNextPlayer()
+                            }else if(game.remainingSpots == 0){
+                                game.checkTie()
                             }
                         }
             })
@@ -66,6 +68,10 @@ const game = (() => {
         })
     }
 
+    function checkTie(){
+        winner.textContent = "Tie"
+    }
+
 
     function alertNextPlayer(){
         this.activePlayer == playerOne ? next.textContent = "Player 2" : next.textContent = "Player 1"
@@ -83,6 +89,7 @@ const game = (() => {
         nextPlayer,
         alertNextPlayer,
         checkWinner,
+        checkTie
     }
 })()
 
