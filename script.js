@@ -4,7 +4,7 @@ const Player = (name, marker) => {
 
 const gameBoard = (() => {
     const squares = document.querySelector('.squares')
-    const board = ["", "", "", "", "", "", "", "", ""]
+    let board = ["", "", "", "", "", "", "", "", ""]
     let count = 0
     board.forEach((item, index) => {
         const square = document.createElement('div')
@@ -15,20 +15,29 @@ const gameBoard = (() => {
     const button = document.querySelector('.new')
 
     function restart(){
-        console.log(squares);
-        // game.win = false
-        // game.activePlayer = 'Player 1'
-        // game.remainingSpots = 9
-        // gameBoard.board = ["", "", "", "", "", "", "", "", ""]
-        // squares.forEach((square) => {
-        //     square.classList.remove('X')
-        //     square.classList.remove('O')
-        // })
+        document.querySelector('.new').style.display = "none"
+        count = 0
+        game.win = false
+        game.activePlayer = game.playerOne
+        game.remainingSpots = 9
+        for(let i = 0; i < board.length; i++) {
+            board[i] = "";
+        }
+        for(let i = 0; i<9; i++){
+            squares.childNodes[i].classList.remove('X')
+            squares.childNodes[i].classList.remove('O')
+            squares.childNodes[i].style.pointerEvents = ''
+        }
+        document.querySelector('.winner').textContent = ""
+        document.querySelector('.nextPlayer').textContent = game.activePlayer.name
+        
     }
+    
     button.addEventListener('click', restart)
 
         Array.from(squares.children).forEach((square, index) => {
                 square.addEventListener('click', () => {
+                      
                         board[index] = game.activePlayer.marker
                         square.style.pointerEvents = 'none'
                         game.remainingSpots -= 1
@@ -36,6 +45,7 @@ const gameBoard = (() => {
                         square.classList.add(game.activePlayer.marker)
                         if(game.win){
                             count++
+                            document.querySelector('.new').style.display = "block"
                             if(count >= 2){
                                 square.classList.remove(game.activePlayer.marker)
                                 square.classList.add('over')
@@ -43,6 +53,7 @@ const gameBoard = (() => {
                         }
                         if(!game.win){
                             if(game.remainingSpots > 0){
+                        
                                 game.nextPlayer()
                                 game.alertNextPlayer()
                             }else if(game.remainingSpots == 0){
@@ -76,13 +87,11 @@ const game = (() => {
         [2,4,6],
     ];
 
- 
-
 
     function checkWinner(){
         winnnerAxes.forEach((item, index) => {
             if(gameBoard.board[item[0]] === this.activePlayer.marker && gameBoard.board[item[1]] === this.activePlayer.marker && gameBoard.board[item[2]] === this.activePlayer.marker){
-                winner.textContent = "Winner:" + this.activePlayer.name
+                winner.textContent = "Winner: " + this.activePlayer.name
                 gameBoard.playing = false
                 this.win = true
             };
@@ -108,6 +117,9 @@ const game = (() => {
         alertNextPlayer,
         checkWinner,
         checkTie,
+        playerOne,
+        playerTwo,
+        win
 
     }
 })()
