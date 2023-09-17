@@ -100,6 +100,7 @@ const game = (() => {
 
     function checkTie(){
         winner.textContent = "Tie"
+        document.querySelector('.new').style.display = "block"
     }
 
     function alertNextPlayer(){
