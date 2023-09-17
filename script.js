@@ -30,7 +30,6 @@ const gameBoard = (() => {
         }
         document.querySelector('.winner').textContent = ""
         document.querySelector('.nextPlayer').textContent = game.activePlayer.name
-        
     }
     
     button.addEventListener('click', restart)
@@ -87,7 +86,6 @@ const game = (() => {
         [2,4,6],
     ];
 
-
     function checkWinner(){
         winnnerAxes.forEach((item, index) => {
             if(gameBoard.board[item[0]] === this.activePlayer.marker && gameBoard.board[item[1]] === this.activePlayer.marker && gameBoard.board[item[2]] === this.activePlayer.marker){
@@ -120,8 +118,7 @@ const game = (() => {
         checkTie,
         playerOne,
         playerTwo,
-        win
-
+        win,
     }
 })()
 

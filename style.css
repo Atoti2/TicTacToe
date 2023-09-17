@@ -13,6 +13,7 @@ body{
     grid-template-rows: repeat(3, 1fr);
  
 }
+
 .square{
     cursor: pointer;
     height: 100px;
@@ -20,6 +21,7 @@ body{
     background-color: #294ea1;
     position: relative;
 }
+
 .square:hover{
     transform: scale(1.02);
 }
@@ -60,8 +62,6 @@ body{
     font-size: 2rem;
 }
 
-
-
 .new{
     display: none;
     border: none;
@@ -74,6 +74,7 @@ body{
     font-size: 1.3rem;
     transition-duration: 300ms;
 }
+
 .new:hover{
     transform: scale(1.05);
 }
